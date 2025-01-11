@@ -29,9 +29,9 @@
             @endif --}}
 
             <!-- Page Content -->
-            <main class="flex-1">
+            {{-- <main class="flex-1">
                 {{ $slot }}
-            </main>
+            </main> --}}
 
 
         </div>

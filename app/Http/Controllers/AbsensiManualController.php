@@ -34,5 +34,39 @@ class AbsensiManualController extends Controller
 
         return redirect()->route('mahasiswa.dashboard')->with('success', 'Absensi berhasil diajukan.');
     }
+
+
+
+    /**
+     * Tampilkan halaman manajemen absensi.
+     */
+    public function index()
+    {
+        $absensis = AbsensiManual::with(['mahasiswa'])->get();
+        return view('admin.manajemen-absensi', compact('absensis'));
+    }
+
+    /**
+     * Memberi izin absensi mahasiswa.
+     */
+    public function beriIzin($id)
+    {
+        $absensi = AbsensiManual::findOrFail($id);
+        $absensi->status = 'diizinkan';
+        $absensi->save();
+
+        return redirect()->route('admin.manajemen-absensi')->with('success', 'Izin absensi berhasil diberikan.');
+    }
+
+    /**
+     * Hapus data absensi mahasiswa.
+     */
+    public function hapusAbsensi($id)
+    {
+        $absensi = AbsensiManual::findOrFail($id);
+        $absensi->delete();
+
+        return redirect()->route('admin.manajemen-absensi')->with('success', 'Data absensi berhasil dihapus.');
+    }
 }
 

@@ -57,6 +57,9 @@ Route::middleware('auth')->group(function () {
 
 
 
+        Route::get('/manajemen-absensi', [AbsensiManualController::class, 'index'])->name('admin.manajemen-absensi');
+        Route::post('/manajemen-absensi/izin/{id}', [AbsensiManualController::class, 'beriIzin'])->name('admin.manajemen-absensi.beri-izin');
+        Route::delete('/manajemen-absensi/hapus/{id}', [AbsensiManualController::class, 'hapusAbsensi'])->name('admin.manajemen-absensi.hapus');
 
 
         Route::get('/admin/absensi-manual', [AbsensiManualController::class, 'index'])->name('admin.absensi.index');  // Untuk melihat absensi manual
