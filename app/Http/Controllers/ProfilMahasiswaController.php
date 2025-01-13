@@ -5,41 +5,65 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Mahasiswa;
+use App\Models\User;
 
 class ProfilMahasiswaController extends Controller
 {
     // Menampilkan profil mahasiswa
     public function show()
     {
-        $mahasiswa = auth()->user(); // Mengambil data mahasiswa yang sedang login
-        return view('mahasiswa.profil', compact('mahasiswa'));
+        $user = auth()->user(); // Mendapatkan user yang sedang login
+        $mahasiswa = $user->mahasiswa; // Ambil data mahasiswa dari relasi
+
+    // Kirimkan ke view
+    return view('mahasiswa.profil', compact('user', 'mahasiswa'));
     }
 
     // Mengupdate profil mahasiswa
     public function update(Request $request)
-    {
-        $request->validate([
-            'nama' => 'required|string|max:255',
-            'nim' => 'required|string|max:20|unique:mahasiswas,nim,' . auth()->id(),
-            'jurusan' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:mahasiswas,email,' . auth()->id(),
-            'alamat' => 'nullable|string|max:255',
-            'no_telepon' => 'nullable|string|max:20',
-        ]);
+{
+    // Validasi input
+    $request->validate([
+        'nama' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email,' . auth()->id(),
+        'nim' => 'required|string|max:20|unique:mahasiswas,nim,' . auth()->user()->mahasiswa->id,
+        'kelas' => 'required|in:A,B,C,D,E',
+        'jurusan' => 'required|string|max:255',
+        'alamat' => 'nullable|string|max:255',
+        'no_telepon' => 'nullable|string|max:20',
+    ]);
 
-        $mahasiswa = auth()->user();
-        $mahasiswa->update($request->all());
+    // Update data user
+    $user = auth()->user(); // Mendapatkan user yang sedang login
+    $user->update([
+        'name' => $request->nama,
+        'email' => $request->email,
+    ]);
 
-        return redirect()->route('mahasiswa.profil')->with('success', 'Profil berhasil diperbarui!');
-    }
+    // Update data mahasiswa
+    $mahasiswa = $user->mahasiswa; // Ambil data mahasiswa dari relasi
+    $mahasiswa->update([
+        'nim' => $request->nim,
+        'kelas' => $request->kelas,
+        'jurusan' => $request->jurusan,
+        'alamat' => $request->alamat,
+        'no_telepon' => $request->no_telepon,
+    ]);
 
-    public function showProfile($id)
-    {
-        // Ambil data mahasiswa berdasarkan ID
-        $mahasiswa = Mahasiswa::find($id);
+    return redirect()->route('mahasiswa.profil')->with('success', 'Profil berhasil diperbarui!');
+}
 
-        // Kirim ke view
-        return view('profil_mahasiswa', compact('mahasiswa'));
-    }
+
+
+
+
+// public function showProfile()
+// {
+//     // Ambil data user beserta data mahasiswa terkait
+//     $user = auth()->user(); // Mendapatkan user yang sedang login
+//     return view('mahasiswa.profil', compact('user'));
+// }
+
+
 }
 

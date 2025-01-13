@@ -45,7 +45,7 @@
                 <div class="w-full">
                     <label for="kelas_id" class="block mb-2 text-sm font-medium text-gray-900 ">Kelas</label>
                     <select id="kelas_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 ">
-                        @foreach($kelas as $kelasItem)
+                        @foreach($mahasiswa as $kelasItem)
                             <option value="{{ $kelasItem->id }}">{{ $kelasItem->nama_kelas }}</option>
                         @endforeach
                         {{-- <option selected="">Pilih Kelas</option>

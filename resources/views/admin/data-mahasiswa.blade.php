@@ -34,23 +34,21 @@
                     </thead>
                     <tbody class="text-gray-700 text-sm">
                         @foreach ($mahasiswa as $item)
-                        <!-- Data Row 1 -->
-                        <tr class="border-b hover:bg-gray-50">
-                            <td>{{ $loop->iteration }}</td>
-                            <td class="py-3 px-6">{{ $item->nama }}</td>
-                            <td class="py-3 px-6">{{ $item->nim }}</td>
-                            <td class="py-3 px-6">{{ $item->kelas }}</td>
-                            <td class="py-3 px-6">{{ $item->jurusan }}</td>
-                            <td class="py-3 px-6">{{ $item->email }}</td>
-                            <td class="py-3 px-6">{{ $item->alamat }}</td>
-                            <td class="py-3 px-6">{{ $item->no_telepon }}</td>
-                            <td class="py-3 px-6">
-                                <a href="#" class="text-blue-500 hover:underline">Edit</a> |
-                                <a href="#" class="text-red-500 hover:underline">Hapus</a>
-                            </td>
-                        </tr>
-
-                        @endforeach
+        <tr class="border-b hover:bg-gray-50">
+            <td class="border border-gray-300 px-4 py-2">{{ $loop->iteration }}</td>
+            <td class="border border-gray-300 px-4 py-2">{{ $item->user ? $item->user->name : '-' }}</td>
+            <td class="border border-gray-300 px-4 py-2">{{ $item->nim }}</td>
+            <td class="border border-gray-300 px-4 py-2">{{ $item->kelas }}</td>
+            <td class="border border-gray-300 px-4 py-2">{{ $item->jurusan }}</td>
+            <td class="border border-gray-300 px-4 py-2">{{ $item->user ? $item->user->email : '-' }}</td>
+            <td class="border border-gray-300 px-4 py-2">{{ $item->alamat }}</td>
+            <td class="border border-gray-300 px-4 py-2">{{ $item->no_telepon }}</td>
+            <td class="border border-gray-300 px-4 py-2">
+                <a href="#" class="text-blue-500 hover:underline">Edit</a> |
+                <a href="#" class="text-red-500 hover:underline">Hapus</a>
+            </td>
+        </tr>
+        @endforeach
                     </tbody>
                 </table>
 

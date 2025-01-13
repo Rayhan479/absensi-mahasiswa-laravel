@@ -22,8 +22,8 @@ class AbsensiManual extends Model
     /**
      * Relasi ke model Mahasiswa.
      */
-    public function mahasiswa()
+    public function mahasiswas()
     {
-        return $this->belongsTo(Mahasiswa::class, 'mahasiswa_id');
+        return $this->belongsTo(Mahasiswa::class, 'user_id');
     }
 }

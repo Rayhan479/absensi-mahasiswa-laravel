@@ -10,11 +10,11 @@ use Illuminate\Http\Request;
 class AbsensiManualController extends Controller
 {
     // Menampilkan form absensi manual
-    public function create()
-    {
-        $kelas = Kelas::all(); // Ambil semua kelas
-        return view('mahasiswa.absensi-manual', compact('kelas'));
-    }
+    // public function create()
+    // {
+    //     $kelas = Kelas::all(); // Ambil semua kelas
+    //     return view('mahasiswa.absensi-manual', compact('kelas'));
+    // }
 
     // Menyimpan absensi manual yang diajukan mahasiswa
     public function store(Request $request)
@@ -26,13 +26,13 @@ class AbsensiManualController extends Controller
         ]);
 
         AbsensiManual::create([
-            'mahasiswa_id' => auth()->user()->id, // Mengambil ID mahasiswa yang login
+            'user_id' => auth()->user()->id, // Mengambil ID mahasiswa yang login
             'kelas_id' => $request->kelas_id,
             'tanggal' => $request->tanggal,
             'status' => $request->status,
         ]);
 
-        return redirect()->route('mahasiswa.dashboard')->with('success', 'Absensi berhasil diajukan.');
+        return redirect()->route('mahasiswa.')->with('success', 'Absensi berhasil diajukan.');
     }
 
 

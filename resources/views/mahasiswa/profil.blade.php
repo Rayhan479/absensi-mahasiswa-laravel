@@ -65,71 +65,50 @@
             </a>
         </div>
 
-      <form action="https://formbold.com/s/FORM_ID" method="POST">
+      <form action="{{ route('mahasiswa.profil.update') }}" method="POST">
         @csrf
-        
+        @method('PUT')
+
         <div class="-mx-3 flex flex-wrap">
           <div class="w-full px-3 sm:w-1/2">
             <div class="mb-5">
-              <label
-                for="fName"
-                class="mb-3 block text-base font-medium text-[#07074D]"
-              >
-                Nama
-              </label>
-              <input
-                type="text"
-                name="fName"
-                id="fName"
-                placeholder="First Name"
-                class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-              />
+              <label for="nama" class="mb-3 block text-base font-medium text-[#07074D]">Nama</label>
+              <input type="text" name="nama" id="nama" value="{{ old('nama', $user->name) }}" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"/>
             </div>
           </div>
           <div class="w-full px-3 sm:w-1/2">
             <div class="mb-5">
-              <label for="lName" class="mb-3 block text-base font-medium text-[#07074D]">NIM</label>
-              <input type="text" name="lName" id="lName" placeholder="Last Name" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"/>
+              <label for="nim" class="mb-3 block text-base font-medium text-[#07074D]">NIM</label>
+              <input type="text" name="nim" id="nim" value="{{ old('nim', $mahasiswa->nim) }}" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"/>
             </div>
-          </div>
-          <div class="w-full px-3 sm:w-1/2">
-            <label for="category" class="mb-3 block text-base font-medium text-[#07074D] ">Jurusan</label>
-            <select id="category" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
-                <option selected="">Jurusan</option>
-
-            </select>
           </div>
           <div class="w-full px-3 sm:w-1/2">
             <div class="mb-5">
-              <label for="lName" class="mb-3 block text-base font-medium text-[#07074D]">Email</label>
-              <input type="text" name="lName" id="lName" placeholder="{{ old('email', $mahasiswa->email) }}" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"/>
+              <label for="jurusan" class="mb-3 block text-base font-medium text-[#07074D]">Jurusan</label>
+              <input type="text" name="jurusan" id="jurusan" value="{{ old('jurusan', $mahasiswa->jurusan) }}" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"/>
             </div>
           </div>
-
-
+          <div class="w-full px-3 sm:w-1/2">
+            <div class="mb-5">
+              <label for="email" class="mb-3 block text-base font-medium text-[#07074D]">Email</label>
+              <input type="email" name="email" id="email" value="{{ old('email', $user->email) }}" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"/>
+            </div>
+          </div>
         </div>
+
         <div class="mb-5">
-          <label
-            for="guest"
-            class="mb-3 block text-base font-medium text-[#07074D]">No Telepon
-          </label>
-          <input
-            type="number" name="guest" id="guest" placeholder="5" min="0" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"/>
-        </div>
-        <div class="sm:col-span-2 mb-5">
-            <label for="description" class="block mb-2 text-sm font-medium text-gray-900">Alamat Lengkap</label>
-            <textarea id="description" rows="3" class="block p-0 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 " placeholder="Your description here"></textarea>
+          <label for="no_telepon" class="mb-3 block text-base font-medium text-[#07074D]">No Telepon</label>
+          <input type="text" name="no_telepon" id="no_telepon" value="{{ old('no_telepon', $mahasiswa->no_telepon) }}" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"/>
         </div>
 
-
-
-
+        <div class="mb-5">
+          <label for="alamat" class="mb-3 block text-base font-medium text-[#07074D]">Alamat Lengkap</label>
+          <textarea name="alamat" id="alamat" rows="3" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">{{ old('alamat', $mahasiswa->alamat) }}</textarea>
+        </div>
 
         <div>
-          <button
-            class="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none"
-          >
-            Update&Save
+          <button type="submit" class="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">
+            Update Profile
           </button>
         </div>
       </form>

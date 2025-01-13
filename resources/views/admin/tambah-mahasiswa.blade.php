@@ -11,6 +11,7 @@
         <div class="bg-white shadow-md rounded-lg p-6">
             <form action="{{ route('admin.store-mahasiswa') }}" method="POST">
                 @csrf
+                @dump($errors->all())
                 <div class="mb-4">
                     <label for="nama" class="block text-gray-700 font-medium mb-2">Nama Mahasiswa</label>
                     <input type="text" name="nama" id="nama" class="w-full border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-300 focus:border-blue-500" value="{{ old('nama') }}" required>
@@ -54,12 +55,7 @@
                     </select>
                 </div>
 
-                <div class="mb-4">
-                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                    <input type="email" name="email" id="email"
-                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                           required>
-                </div>
+
 
                 <div class="mb-4">
                     <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat</label>
@@ -74,6 +70,28 @@
                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                            required>
                 </div>
+
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" name="email" id="email"
+                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                           required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" name="password" id="password"
+                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                           required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Konfirmasi Password</label>
+                    <input type="password" name="password_confirmation" id="password_confirmation"
+                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                           required>
+                </div>
+
 
 
                 <div class="flex justify-end">

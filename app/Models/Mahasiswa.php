@@ -15,9 +15,8 @@ class Mahasiswa extends Model
 
     // Kolom yang dapat diisi (fillable)
     protected $fillable = [
-        'nama',
+        'user_id',
         'nim',
-        'email',
         'kelas',
         'jurusan',
         'alamat',
@@ -30,9 +29,9 @@ class Mahasiswa extends Model
         return $this->hasMany(AbsensiManual::class);
     }
 
-    public function kelas()
+    public function user()
     {
-        return $this->belongsTo(Kelas::class);
+        return $this->belongsTo(User::class);
     }
 }
 
