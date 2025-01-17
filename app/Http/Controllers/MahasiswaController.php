@@ -45,7 +45,7 @@ public function store(Request $request)
             'jurusan' => $validated['jurusan'],
             'alamat' => $validated['alamat'],
             'no_telepon' => $validated['no_telepon'],
-            'user_id' => $request->user_id, 
+            'user_id' => $request->user_id,
         ]);
 
         Log::info('Data mahasiswa berhasil disimpan.', ['mahasiswa' => $mahasiswa]);
@@ -77,9 +77,9 @@ public function store(Request $request)
 
     // Menampilkan daftar mahasiswa
     public function index()
-{
-    $mahasiswa = Mahasiswa::with('user')->get(); // Mengambil data mahasiswa beserta user
-    return view('admin.data-mahasiswa', compact('mahasiswa'));
-}
+    {
+        $mahasiswa = Mahasiswa::with('user')->get(); // Mengambil data mahasiswa beserta user
+        return view('admin.data-mahasiswa', compact('mahasiswa'));
+    }
 
 }

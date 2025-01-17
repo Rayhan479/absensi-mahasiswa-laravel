@@ -13,7 +13,6 @@ class AbsensiManual extends Model
 
     protected $fillable = [
         'mahasiswa_id',
-        'kelas',
         'mata_kuliah',
         'tanggal',
         'status',
@@ -22,8 +21,33 @@ class AbsensiManual extends Model
     /**
      * Relasi ke model Mahasiswa.
      */
+    // app/Models/AbsensiManual.php
+    public function mahasiswa()
+    {
+        return $this->belongsTo(Mahasiswa::class);
+    }
+
     public function mahasiswas()
     {
         return $this->belongsTo(Mahasiswa::class, 'user_id');
     }
+
+
+
+    // Scope untuk filter berdasarkan tanggal
+    public function scopeFilterByDate($query, $tanggal)
+    {
+        if ($tanggal) {
+            $query->whereDate('tanggal', $tanggal);
+        }
+    }
+
+    // Scope untuk filter berdasarkan mata kuliah
+    public function scopeFilterByMataKuliah($query, $mataKuliah)
+    {
+        if ($mataKuliah) {
+            $query->where('mata_kuliah', 'like', "%$mataKuliah%");
+        }
+    }
+
 }

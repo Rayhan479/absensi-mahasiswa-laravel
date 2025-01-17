@@ -11,7 +11,7 @@
         <div class="bg-white shadow-md rounded-lg p-6">
             <form action="{{ route('admin.store-mahasiswa') }}" method="POST">
                 @csrf
-                @dump($errors->all())
+                {{-- @dump($errors->all()) --}}
                 <div class="mb-4">
                     <label for="nama" class="block text-gray-700 font-medium mb-2">Nama Mahasiswa</label>
                     <input type="text" name="nama" id="nama" class="w-full border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-300 focus:border-blue-500" value="{{ old('nama') }}" required>

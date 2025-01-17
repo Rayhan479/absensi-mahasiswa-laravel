@@ -18,7 +18,7 @@
         <div class=" bg-gray-100">
             @include('mahasiswa.layouts.navigation')
             @include('mahasiswa.layouts.sidebar')
-
+            @yield('content')
             <!-- Page Heading -->
             {{-- @if (isset($header))
                 <header class="bg-white shadow">

@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -33,6 +34,12 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function scopeAdmin($query)
+    {
+        return $query->where('role', 'admin');
+    }
+
+
     /**
      * The attributes that should be cast.
      *
@@ -44,11 +51,11 @@ class User extends Authenticatable
     // Relasi ke Mahasiswa
     public function mahasiswa()
     {
-        return $this->hasOne(Mahasiswa::class);
+        return $this->hasOne(Mahasiswa::class, 'user_id');
     }
     public function user()
-{
-    return $this->belongsTo(User::class);
-}
+    {
+        return $this->belongsTo(User::class);
+    }
 
 }

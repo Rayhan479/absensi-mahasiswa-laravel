@@ -18,7 +18,7 @@
         <div class=" bg-gray-1admin00">
             @include('admin.layouts.navigation')
             @include('admin.layouts.sidebar')
-
+            @yield('content')
             <!-- Page Heading -->
             {{-- @if (isset($header))
                 <header class="bg-white shadow">

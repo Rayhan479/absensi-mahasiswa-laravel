@@ -85,40 +85,40 @@
                 <!-- First Stats Container -->
                 <div class="bg-white rounded-lg shadow hover:shadow-lg transition duration-300 transform hover:scale-105">
                     <div class="h-20 bg-red-400 flex items-center justify-start px-5">
-                        <p class="text-white text-lg font-bold">BT SUBSCRIBERS</p>
+                        <p class="text-white text-lg font-bold">Jumlah Hadir</p>
                     </div>
                     <div class="px-5 py-4">
                         <p class="text-sm text-gray-600">TOTAL</p>
-                        <p class="text-3xl font-bold">20,456</p>
+                        <p class="text-3xl font-bold">0</p>
                     </div>
                 </div>
 
                 <!-- Second Stats Container -->
                 <div class="bg-white rounded-lg shadow hover:shadow-lg transition duration-300 transform hover:scale-105">
                     <div class="h-20 bg-blue-500 flex items-center justify-start px-5">
-                        <p class="text-white text-lg font-bold">BT ACTIVE SUBSCRIBERS</p>
+                        <p class="text-white text-lg font-bold">Jumlah Ijin</p>
                     </div>
                     <div class="px-5 py-4">
                         <p class="text-sm text-gray-600">TOTAL</p>
-                        <p class="text-3xl font-bold">19,694</p>
+                        <p class="text-3xl font-bold">0</p>
                     </div>
                 </div>
 
                 <!-- Third Stats Container -->
                 <div class="bg-white rounded-lg shadow hover:shadow-lg transition duration-300 transform hover:scale-105">
                     <div class="h-20 bg-purple-400 flex items-center justify-start px-5">
-                        <p class="text-white text-lg font-bold">BT OPT OUTS</p>
+                        <p class="text-white text-lg font-bold">Jumlah Alfa</p>
                     </div>
                     <div class="px-5 py-4">
                         <p class="text-sm text-gray-600">TOTAL</p>
-                        <p class="text-3xl font-bold">711</p>
+                        <p class="text-3xl font-bold">0</p>
                     </div>
                 </div>
 
                 <!-- Fourth Stats Container -->
                 <div class="bg-white rounded-lg shadow hover:shadow-lg transition duration-300 transform hover:scale-105">
                     <div class="h-20 bg-purple-900 flex items-center justify-start px-5">
-                        <p class="text-white text-lg font-bold">BT TODAY'S SUBSCRIPTION</p>
+                        <p class="text-white text-lg font-bold">Total Kehadiran</p>
                     </div>
                     <div class="px-5 py-4">
                         <p class="text-sm text-gray-600">TOTAL</p>

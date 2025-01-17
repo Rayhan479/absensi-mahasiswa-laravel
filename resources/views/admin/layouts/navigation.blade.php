@@ -46,8 +46,8 @@
                 <!-- Logo -->
                 <div class="flex ms-2 md:me-24">
                     <a href="{{ route('mahasiswa.dashboard') }}" class="flex ms-2 md:me-24">
-                        <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 me-3" alt="FlowBite Logo" />
-                        <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Kelompok 8</span>
+                        {{-- <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 me-3" alt="FlowBite Logo" /> --}}
+                        <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Admin Panel</span>
                     </a>
                 </div>
 
@@ -72,8 +72,8 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('mahasiswa.profil')">
-                            {{ __('Profile') }}
+                        <x-dropdown-link :href="route('admin.profil.show')">
+                            {{ __('Profil') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
