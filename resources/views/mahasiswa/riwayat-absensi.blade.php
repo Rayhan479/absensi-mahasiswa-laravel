@@ -53,6 +53,13 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                     {{ $item->status }}
                                 </td>
+                                <td>
+                                    @if ($item->approved)
+                                        <span class="badge bg-success">Disetujui</span>
+                                    @else
+                                        <span class="badge bg-warning">Menunggu Persetujuan</span>
+                                    @endif
+                                </td>
                             </tr>
                         @empty
                             <tr>

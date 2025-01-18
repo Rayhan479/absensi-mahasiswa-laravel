@@ -16,4 +16,6 @@ public function index()
 return view('mahasiswa.jadwal', compact('jadwal'));
 ;
     }
+
+    
 }

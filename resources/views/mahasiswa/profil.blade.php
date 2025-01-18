@@ -50,67 +50,154 @@
 
 
 
-<div class="flex items-center justify-center p-20">
-    <!-- Author: FormBold Team -->
-    <!-- Learn More: https://formbold.com -->
 
-    <div class="mx-auto w-full max-w-[550px] ">
-        <div class="flex ">
-            <a href="{{ url('mahasiswa/dashboard') }}" type="button" class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-10 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ">
-
-                <svg class="w-3.5 h-3.5 mr-2 rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
-                </svg>
-                Kembali
-            </a>
-        </div>
-
-      <form action="{{ route('mahasiswa.profil.update') }}" method="POST">
-        @csrf
-        @method('PUT')
-
-        <div class="-mx-3 flex flex-wrap">
-          <div class="w-full px-3 sm:w-1/2">
-            <div class="mb-5">
-              <label for="nama" class="mb-3 block text-base font-medium text-[#07074D]">Nama</label>
-              <input type="text" name="nama" id="nama" value="{{ old('nama', $user->name) }}" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"/>
+<div class="p-4"> <!-- Margin untuk sidebar -->
+    <div class="p-4 mt-14"> <!-- Margin untuk navbar -->
+        <div class="max-w-2xl mx-auto">
+            <!-- Header Section -->
+            <div class="flex items-center justify-between mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900">Profil Mahasiswa</h2>
+                    <p class="mt-1 text-sm text-gray-600">Perbarui informasi profil dan data diri Anda</p>
+                </div>
+                <a href="{{ url('mahasiswa/dashboard') }}" class="flex items-center px-4 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                    </svg>
+                    Kembali ke Dashboard
+                </a>
             </div>
-          </div>
-          <div class="w-full px-3 sm:w-1/2">
-            <div class="mb-5">
-              <label for="nim" class="mb-3 block text-base font-medium text-[#07074D]">NIM</label>
-              <input type="text" name="nim" id="nim" value="{{ old('nim', $mahasiswa->nim) }}" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"/>
-            </div>
-          </div>
-          <div class="w-full px-3 sm:w-1/2">
-            <div class="mb-5">
-              <label for="jurusan" class="mb-3 block text-base font-medium text-[#07074D]">Jurusan</label>
-              <input type="text" name="jurusan" id="jurusan" value="{{ old('jurusan', $mahasiswa->jurusan) }}" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"/>
-            </div>
-          </div>
-          <div class="w-full px-3 sm:w-1/2">
-            <div class="mb-5">
-              <label for="email" class="mb-3 block text-base font-medium text-[#07074D]">Email</label>
-              <input type="email" name="email" id="email" value="{{ old('email', $user->email) }}" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"/>
-            </div>
-          </div>
-        </div>
 
-        <div class="mb-5">
-          <label for="no_telepon" class="mb-3 block text-base font-medium text-[#07074D]">No Telepon</label>
-          <input type="text" name="no_telepon" id="no_telepon" value="{{ old('no_telepon', $mahasiswa->no_telepon) }}" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"/>
-        </div>
+            <!-- Alert Success -->
+            @if (session('success'))
+            <div class="p-4 mb-6 text-sm text-green-800 rounded-lg bg-green-50" role="alert">
+                <div class="flex items-center">
+                    <svg class="w-4 h-4 mr-2 fill-current" viewBox="0 0 20 20">
+                        <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                    </svg>
+                    <span>{{ session('success') }}</span>
+                </div>
+            </div>
+            @endif
 
-        <div class="mb-5">
-          <label for="alamat" class="mb-3 block text-base font-medium text-[#07074D]">Alamat Lengkap</label>
-          <textarea name="alamat" id="alamat" rows="3" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">{{ old('alamat', $mahasiswa->alamat) }}</textarea>
-        </div>
+            <!-- Profile Form -->
+            <div class="bg-white shadow rounded-lg">
+                <form action="{{ route('mahasiswa.profil.update') }}" method="POST" class="space-y-6 p-6">
+                    @csrf
+                    @method('PUT')
 
-        <div>
-          <button type="submit" class="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">
-            Update Profile
-          </button>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Nama Input -->
+                        <div>
+                            <label for="nama" class="block text-sm font-medium text-gray-700">Nama</label>
+                            <input type="text" name="nama" id="nama"
+                                value="{{ old('nama', $user->name) }}"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm">
+                            @error('nama')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <!-- NIM Input -->
+                        <div>
+                            <label for="nim" class="block text-sm font-medium text-gray-700">NIM</label>
+                            <input type="text" name="nim" id="nim"
+                                value="{{ old('nim', $mahasiswa->nim) }}"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm">
+                            @error('nim')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <!-- Jurusan Input -->
+                        <div>
+                            <label for="jurusan" class="block text-sm font-medium text-gray-700">Jurusan</label>
+                            <input type="text" name="jurusan" id="jurusan"
+                                value="{{ old('jurusan', $mahasiswa->jurusan) }}"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm">
+                            @error('jurusan')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <!-- Email Input -->
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                            <input type="email" name="email" id="email"
+                                value="{{ old('email', $user->email) }}"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm">
+                            @error('email')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <!-- No Telepon Input -->
+                        <div>
+                            <label for="no_telepon" class="block text-sm font-medium text-gray-700">No Telepon</label>
+                            <input type="text" name="no_telepon" id="no_telepon"
+                                value="{{ old('no_telepon', $mahasiswa->no_telepon) }}"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm">
+                            @error('no_telepon')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <!-- Alamat Input -->
+                    <div>
+                        <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat Lengkap</label>
+                        <textarea name="alamat" id="alamat" rows="3"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm">{{ old('alamat', $mahasiswa->alamat) }}</textarea>
+                        @error('alamat')
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <!-- Password Section -->
+                    <div class="border-t pt-6">
+                        <h3 class="text-lg font-medium text-gray-900 mb-4">Ubah Password</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Current Password -->
+                            <div>
+                                <label for="current_password" class="block text-sm font-medium text-gray-700">Password Saat Ini</label>
+                                <input type="password" name="current_password" id="current_password"
+                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm">
+                                @error('current_password')
+                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <!-- New Password -->
+                            <div>
+                                <label for="new_password" class="block text-sm font-medium text-gray-700">Password Baru</label>
+                                <input type="password" name="new_password" id="new_password"
+                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm">
+                                @error('new_password')
+                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <!-- Confirm New Password -->
+                            <div>
+                                <label for="new_password_confirmation" class="block text-sm font-medium text-gray-700">Konfirmasi Password Baru</label>
+                                <input type="password" name="new_password_confirmation" id="new_password_confirmation"
+                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="flex items-center justify-end">
+                        <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                            <svg class="w-4 h-4 mr-2 -ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Simpan Perubahan
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-      </form>
     </div>
-  </div>
+</div>
+

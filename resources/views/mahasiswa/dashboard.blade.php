@@ -89,7 +89,7 @@
                     </div>
                     <div class="px-5 py-4">
                         <p class="text-sm text-gray-600">TOTAL</p>
-                        <p class="text-3xl font-bold">0</p>
+                        <p class="text-3xl font-bold">{{ $jumlahHadir }}</p>
                     </div>
                 </div>
 
@@ -100,7 +100,7 @@
                     </div>
                     <div class="px-5 py-4">
                         <p class="text-sm text-gray-600">TOTAL</p>
-                        <p class="text-3xl font-bold">0</p>
+                        <p class="text-3xl font-bold">{{ $jumlahIzin }}</p>
                     </div>
                 </div>
 
@@ -111,7 +111,7 @@
                     </div>
                     <div class="px-5 py-4">
                         <p class="text-sm text-gray-600">TOTAL</p>
-                        <p class="text-3xl font-bold">0</p>
+                        <p class="text-3xl font-bold">{{ $jumlahAlfa }}</p>
                     </div>
                 </div>
 
@@ -122,12 +122,13 @@
                     </div>
                     <div class="px-5 py-4">
                         <p class="text-sm text-gray-600">TOTAL</p>
-                        <p class="text-3xl font-bold">0</p>
+                        <p class="text-3xl font-bold">{{ $totalKehadiran }}</p>
                     </div>
                 </div>
             </div>
         </main>
     </div>
+
 
 
 

@@ -22,6 +22,7 @@ class JadwalKuliahController extends Controller
 }
 
 
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -65,5 +66,8 @@ class JadwalKuliahController extends Controller
 
         return redirect()->route('admin.manajemen-jadwal.index')->with('success', 'Jadwal berhasil dihapus.');
     }
+
+
+
 }
 

@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AbsensiManual;
+use App\Models\JadwalKuliah;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 
@@ -39,15 +40,18 @@ class AbsensiManualController extends Controller
             'mata_kuliah' => 'required|string|max:255',
         ]);
 
+
         AbsensiManual::create([
             'user_id' => auth()->user()->id,
             'mahasiswa_id' => auth()->user()->mahasiswa->id,
             'tanggal' => $request->tanggal,
             'status' => $request->status,
             'mata_kuliah' => $request->mata_kuliah,
+            'approved' => false,
         ]);
 
-        return redirect()->route('mahasiswa.absensi.manual.create')->with('success', 'Absensi berhasil diajukan.');
+        return redirect()->route('mahasiswa.absensi.manual.create')->with('success', 'Absensi berhasil diajukan, menunggu persetujuan admin.');
+
     }
 
 
@@ -58,32 +62,32 @@ class AbsensiManualController extends Controller
      */
     public function index()
     {
+        $mataKuliah = JadwalKuliah::pluck('mata_kuliah', );
         $absensis = AbsensiManual::with(['mahasiswa'])->get();
-        return view('admin.manajemen-absensi', compact('absensis'));
+        return view('admin.manajemen-absensi', compact('absensis', 'mataKuliah'));
     }
 
     /**
      * Memberi izin absensi mahasiswa.
      */
-    public function beriIzin($id)
+    public function approve(Request $request, $id)
     {
         $absensi = AbsensiManual::findOrFail($id);
-        $absensi->status = 'diizinkan';
-        $absensi->save();
+        $absensi->update([
+            'approved' => true,
+        ]);
 
-        return redirect()->route('admin.manajemen-absensi')->with('success', 'Izin absensi berhasil diberikan.');
+        return redirect()->back()->with('success', 'Absensi berhasil disetujui.');
     }
 
-    /**
-     * Hapus data absensi mahasiswa.
-     */
-    public function hapusAbsensi($id)
+    public function reject(Request $request, $id)
     {
         $absensi = AbsensiManual::findOrFail($id);
-        $absensi->delete();
+        $absensi->delete(); // Hapus absensi jika ditolak
 
-        return redirect()->route('admin.manajemen-absensi')->with('success', 'Data absensi berhasil dihapus.');
+        return redirect()->back()->with('success', 'Absensi berhasil ditolak.');
     }
+
 
 
     public function riwayatAbsensi(Request $request)
@@ -103,5 +107,9 @@ class AbsensiManualController extends Controller
 
         return view('mahasiswa.riwayat-absensi', compact('absensi', 'tanggal', 'mataKuliah'));
     }
+
+
+
+
 }
 

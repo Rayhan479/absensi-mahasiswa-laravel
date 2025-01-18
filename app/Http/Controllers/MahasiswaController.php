@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AbsensiManual;
 use App\Models\Mahasiswa;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,9 +14,27 @@ use Illuminate\Support\Facades\Log;
 class MahasiswaController extends Controller
 {
     public function dashboard()
-    {
-        return view('mahasiswa.dashboard');
-    }
+{
+    $mahasiswaId = auth()->user()->mahasiswa->id; // Mendapatkan ID mahasiswa dari user yang sedang login.
+
+    // Menghitung jumlah kehadiran berdasarkan status.
+    $jumlahHadir = AbsensiManual::where('mahasiswa_id', $mahasiswaId)
+        ->where('status', 'Hadir')
+        ->count();
+
+    $jumlahIzin = AbsensiManual::where('mahasiswa_id', $mahasiswaId)
+        ->where('status', 'Izin')
+        ->count();
+
+    $jumlahAlfa = AbsensiManual::where('mahasiswa_id', $mahasiswaId)
+        ->where('status', 'Alfa') // Pastikan ada opsi ini jika ingin dihitung.
+        ->count();
+
+    $totalKehadiran = $jumlahHadir + $jumlahIzin; // Total semua kehadiran dan izin.
+
+    return view('mahasiswa.dashboard', compact('jumlahHadir', 'jumlahIzin', 'jumlahAlfa', 'totalKehadiran'));
+}
+
 
     // public function mahasiswa()
     // {
@@ -81,5 +100,8 @@ public function store(Request $request)
         $mahasiswa = Mahasiswa::with('user')->get(); // Mengambil data mahasiswa beserta user
         return view('admin.data-mahasiswa', compact('mahasiswa'));
     }
+
+
+
 
 }

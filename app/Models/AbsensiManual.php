@@ -16,6 +16,7 @@ class AbsensiManual extends Model
         'mata_kuliah',
         'tanggal',
         'status',
+        'approved',
     ];
 
     /**
